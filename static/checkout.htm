@@ -15,9 +15,8 @@
         gtag('config', 'UA-149453764-1');
     </script>
     <script src="js/jquery.js"></script>
-    <link rel="canonical" href="https://www.nowing.com/order/checkout2.html">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="/logo/n-32x32.png">
+    <link rel="icon" type="image/png" href="gh-32x32.png">
     <style>
         /* common classes and tags */
         @font-face {
@@ -421,7 +420,7 @@
             </div>
 
             <div class='form lineBottom'>
-                <div class='formSectionHeaderRight'><input id='submitBtn' type="submit" value="Submit Order"></div>
+                <div class='formSectionHeaderRight'><input id='submitBtn' type="button" value="Submit Order"></div>
             </div>
         </div>
         <div class='spacer'></div>
@@ -578,7 +577,12 @@
 
 
 
-
+        document.getElementById('submitBtn').onclick = function () {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("POST", "/order");
+            xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xmlhttp.send(JSON.stringify({ "Email": "hello@user.com", "ProductID": "1", "CreditCardNumber": "123432534523" }));
+        }
 
 
 
@@ -587,7 +591,8 @@
             if (window.innerWidth < 900) { headerDiv.style.justifyContent = 'center'; } else {
                 headerDiv.style.justifyContent = 'flex-start';
             }
-        } resize(); window.onresize = resize; </script>
+        } resize(); window.onresize = resize; 
+    </script>
 </body>
 
 </html>

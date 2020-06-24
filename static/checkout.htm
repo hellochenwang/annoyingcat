@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149453764-1"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-light_green.min.css" />
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149453764-1');
+    </script>
+    <script src="js/jquery.js"></script>
+    <link rel="canonical" href="https://www.nowing.com/order/checkout2.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/logo/n-32x32.png">
+    <style>
+        /* common classes and tags */
+        @font-face {
+            font-family: avenir;
+            src: url(avenir.woff2);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: 'avenir', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f1f1f1;
+        }
+
+        .spacer {
+            height: 50px;
+        }
+
+        .lineTop {
+            border-top: 1px solid #ccc;
+        }
+
+        .lineBottom {
+            border-bottom: 1px solid #ccc;
+        }
+
+        /* page structure */
+        #headerDiv {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            max-width: 1000px;
+            background-color: #f1f1f1;
+            margin: 0 auto;
+        }
+
+        /* headerDiv contents */
+        #logoSvg {
+            display: block;
+            padding: 33.5px;
+            width: 201.2px;
+        }
+
+        .form {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            border-left: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            background-color: #fff;
+        }
+
+        .formSectionHeader {
+            flex: 100%;
+            font-size: 26px;
+            font-weight: bold;
+            padding: 30px 0 20px 0;
+        }
+
+        .formSectionHeaderRight {
+            flex: 100%;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .form label {
+            color: #666;
+            font-size: 16px;
+            padding: 22px 0 0 2px;
+        }
+
+        .form input {
+            box-sizing: border-box;
+            font-size: 16px;
+            width: 100%;
+            padding: 8px;
+        }
+
+        .formHeader {
+            position: relative;
+            display: block;
+            flex: 50%;
+            min-width: 200px;
+        }
+
+        .formHeader h1 {
+            padding: 10px 30px 10px 30px;
+            font-size: 20px;
+        }
+
+        .formHeader p {
+            padding: 10px 60px 10px 35px;
+            font-size: 12px;
+            /* white-space: nowrap; */
+        }
+
+        .formBody {
+            position: relative;
+            display: block;
+            min-width: 200px;
+            font-size: 16px;
+            flex: 50%;
+        }
+
+        .formBody label {
+            display: block;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+        }
+
+        .cc {
+            margin: 2px;
+            width: 50px;
+            height: 50px;
+        }
+
+        #submitBtn {
+            margin: 60px;
+        }
+
+        .gray {
+            color: #666;
+        }
+
+        .small {
+            font-size: 16px;
+        }
+
+        #submitBtn {
+            display: block;
+            margin: 28px;
+            padding: 10px 5px;
+            width: 180px;
+            font-size: 22px;
+            font-weight: 600;
+
+            /* display: block;
+			padding: 10px 30px 10px 30px; */
+            border: 1px solid #000;
+            background: #000;
+            color: #fff;
+            cursor: pointer;
+            text-decoration: none;
+            white-space: nowrap;
+            text-align: center;
+
+            -o-transition: color .3s ease-out, background .3s ease-in;
+            -ms-transition: color .3s ease-out, background .3s ease-in;
+            -moz-transition: color .3s ease-out, background .3s ease-in;
+            -webkit-transition: color .3s ease-out, background .3s ease-in;
+            transition: color .3s ease-out, background .3s ease-in;
+        }
+
+        #submitBtn:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* #submitBtn {
+			display: block;
+			font-size: 22px;
+			border-radius: 32px;
+			width: 180px;
+			background: rgb(255, 123, 0);
+		} */
+
+        #addressDiv {
+            box-sizing: border-box;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        #addressDiv span {
+            display: inline-block;
+            padding: 20px;
+            width: 100%;
+            background-color: #eee;
+        }
+
+        .hiddenfield {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="headerDiv">
+        <div id='logoDiv'><img id='logoSvg' src='GH_Logo.svg' /></div>
+    </div>
+    <div class='spacer lineTop'></div>
+
+    <form id='orderForm' method="" action="">
+        <div class='form lineTop'>
+            <div class='formSectionHeader'>Let's Get Started!</div>
+        </div>
+        <div class='form'>
+            <div class='formHeader'>
+                <h1>How would you like to get your share?</h1>
+            </div>
+
+            <div class='formBody'>
+                <!--<p>
+                        <label for="homeDelivery" class="mdl-radio mdl-js-radio mdl-js-ripple-effect" >I'd like my share delivered
+                            to my home
+                        <input type="radio" class="mdl-radio__button" name="pickupDelivery" value="homeDelivery" id='homeDelivery' style="width: auto">
+                        </label></p>-->
+                <p>
+                    <input type="radio" name="pickupDelivery" value="homeDelivery" id='homeDelivery'
+                        style="width: auto;">
+                    <label for="homeDelivery" class="small gray">I'd like my share delivered to my home</label></p>
+                <p>
+                    <input type="radio" name="pickupDelivery" value="pickup" id='pickup' style="width: auto;">
+                    <label for="pickup" class="small gray">I'll pick my share up at a site near my home</label></p>
+
+
+                <div id="hdAddressDiv" class="mdl-textfield mdl-js-textfield">
+                    <p>Please enter your delivery address.</p>
+                    <label for="billingaddress">Address</label>
+                    <input type="text" id="billingaddress" name="billingaddress">
+                    <div class="row">
+                        <div style="padding-right: 5px; flex: 50%;">
+                            <label for="billingcity">City</label>
+                            <input type="text" id="billingcity" name="billingcity">
+                        </div>
+                        <div style="flex: 25%;">
+                            <label for="billingstate">State</label>
+                            <input type="text" id="billingstate" name="billingstate" value="CA">
+                        </div>
+                        <div style="padding-left: 5px;flex: 25%;">
+                            <label id="hdZip" for="billingzip">Zip</label>
+                            <input type="text" id="billingzip" name="billingzip">
+                        </div>
+                    </div>
+                    <div class='spacer'></div>
+                </div>
+            </div>
+
+        </div>
+        <div id="mapContainer" class="form">
+            <div style="margin-left: 3%;">
+                <p>Please select a pickup location on the map.</p>
+            </div>
+            <div id="map" class="form" style="height: 500px;width:90%">
+            </div>
+        </div>
+
+
+        <div class="plus form" onClick="showfield()"><button class="mdl-button mdl-button--fab mdl-button--mini-fab"
+                disabled>
+                <i class="material-icons">arrow_right_alt</i></button></div>
+
+
+        <div id="show1" class='form hiddenfield'>
+            <div class='formHeader'>
+                <h1>How often would you like to get your share?</h1>
+            </div>
+            <div class='formBody'>
+                <select id="frequency" style="width: 50%; padding: 10px; margin: .67em">
+                    <option name="placeholder">Select an option</option>
+                    <option name="biweekly">Once a week</option>
+                    <option name="biweekly">Biweekly</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class='form show2'>
+            <div class='formHeader'>
+                <h1>Select your share size:</h1>
+            </div>
+            <div class='formBody'>
+                <select id="size" style="width: 50%; padding: 10px; margin: .67em">
+                    <option name="placeholder2">Choose a size</option>
+                    <option name="extraLarge">Extra-Large: 28 oz</option>
+                    <option name="large">Large: 24 oz</option>
+                    <option name="medium">Medium: 18 oz</option>
+                    <option name="small">Small: 10 oz</option>
+                </select>
+            </div>
+        </div>
+
+
+
+        <div class="show3">
+            <div class='form'>
+                <div class='formHeader'>
+                    <h1>Contact Information</h1>
+                    <p class='gray small'>We will use this email address to confirm your order and send you updates on
+                        your
+                        deliveries. Your information will remain confidential and will not be distributed.</p>
+                </div>
+                <div class='formBody'>
+                    <div class="row">
+                        <div style="padding-right: 5px; flex: 25%;">
+                            <label for="firstname">First name</label>
+                            <input type="text" id="firstName" name="firstName">
+                        </div>
+                        <div style="flex: 50%;">
+                            <label for="lastname">Last name</label>
+                            <input type="text" id="lastName" name="lastName">
+                        </div>
+                    </div>
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email">
+                    <label for="phone">Phone</label>
+                    <input type="text" id="phone" name="phone">
+                    <div class='spacer'></div>
+                </div>
+            </div>
+            <div class="plus form" onClick="showfield()"><button class="mdl-button mdl-button--fab mdl-button--mini-fab"
+                    disabled>
+                    <i class="material-icons">arrow_right_alt</i></button></div>
+        </div>
+
+        <div class="show4 hiddenfield">
+            <div class='form lineTop'>
+                <div class='formSectionHeader'>Billing</div>
+            </div>
+            <div class='form'>
+                <div class='formHeader'>
+                    <h1>Debit/Credit Card</h1>
+                    <p class='gray small'>Accepted Cards<br>
+                        <img class='cc' src="visa.svg" /><img class='cc' src="mastercard.svg" /><img class='cc'
+                            src="amex.svg" /><img class='cc' src="discover.svg" />
+                    </p>
+                    <p class='gray small'>A receipt will be emailed to the email address on file.</p>
+                </div>
+                <div class='formBody'>
+                    <label for="cname">Billing name</label>
+                    <input type="text" id="cname" name="cardname">
+                    <label for="ccnum">Credit card number</label>
+                    <input type="text" id="ccnum" name="cardnumber">
+                    <div class="row">
+                        <div style="padding-right: 5px; flex: 33%;">
+                            <label for="expmonth">Expiry Month</label>
+                            <input type="text" id="expmonth" name="expmonth">
+                        </div>
+                        <div style="flex: 33%;">
+                            <label for="expyear">Expiry Year</label>
+                            <input type="text" id="expyear" name="expyear">
+                        </div>
+                        <div style="padding-left: 5px; flex: 34%;">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" name="cvv">
+                        </div>
+                    </div>
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address">
+                    <div class="row">
+                        <div style="padding-right: 5px; flex: 50%;">
+                            <label for="city">City</label>
+                            <input type="text" id="city" name="city">
+                        </div>
+                        <div style="flex: 25%;">
+                            <label for="state">State</label>
+                            <input type="text" id="state" name="state">
+                        </div>
+                        <div style="padding-left: 5px;flex: 25%;">
+                            <label for="zip">Zip</label>
+                            <input type="text" id="zip" name="zip">
+                        </div>
+                    </div>
+                    <div class='spacer'></div>
+                </div>
+            </div>
+            <div class="plus form" onClick="showfield()"><button class="mdl-button mdl-button--fab mdl-button--mini-fab"
+                    disabled>
+                    <i class="material-icons">arrow_right_alt</i></button></div>
+        </div>
+
+        <div class="show5 hiddenfield">
+            <div class='form lineTop'>
+                <div class='formSectionHeader'>Order Review</div>
+            </div>
+            <div class='form'>
+                <table style="width: 100%;">
+                    <tr>
+                        <td width='50%'>Product:</td>
+                        <td width='50%'><span id='productName'></span><input type="hidden" id='product'
+                                name='product' />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Total:</td>
+                        <td><span id='total'></span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class='form lineBottom'>
+                <div class='formSectionHeaderRight'><input id='submitBtn' type="submit" value="Submit Order"></div>
+            </div>
+        </div>
+        <div class='spacer'></div>
+    </form>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCI39BbMHZqX2xpxl9nALf_TiFIRhRBD2o&callback=initMap">
+        </script>
+
+    <script>
+        var locations = [{
+            lat: 34.432227,
+            lng: -119.8761,
+            mCont: "<p><a href='javascript:alert(\"You have selected <> as your pickup location\");'>Set as pickup location</a></p>",
+            title: "Draughtsman Aleworks",
+        },
+        {
+            lat: 53.259065,
+            lng: -4.417487,
+            mCont: "<p>ccc</p>",
+            title: "Fairview Gardens",
+        }
+        ];
+
+        var infowindow = [];
+        var markers = [];
+
+        function initMap() {
+
+            var latlng = new google.maps.LatLng(34.432227, -119.8761);
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: latlng
+            });
+
+            for (var i = 0, length = locations.length; i < length; i++) {
+                var location = locations[i];
+
+                infowindow[i] = new google.maps.InfoWindow();
+
+                markers[i] = new google.maps.Marker({
+                    position: {
+                        lat: locations[i].lat,
+                        lng: locations[i].lng
+                    },
+                    map: map,
+                    title: location.title
+                });
+                google.maps.event.addListener(markers[i], 'click', (function (map, content, infowindow) {
+                    return function (e) {
+                        infowindow.setContent(content);
+                        infowindow.open(map, this);
+                    }
+                })(map, locations[i].mCont, infowindow[i]));
+            }
+        }
+    </script>
+
+
+    <script>
+
+        var homeDelivery = document.getElementById("homeDelivery");
+        var pickup = document.getElementById("pickup");
+        var mapContainer = document.getElementById("mapContainer");
+        var hdAddressDiv = document.getElementById("hdAddressDiv");
+
+
+        function showHdAddress() {
+            if (homeDelivery.checked) {
+                hdAddressDiv.style.display = 'block';
+                mapContainer.style.display = 'none';
+            } else {
+                hdAddressDiv.style.display = 'none';
+            }
+        }
+
+        function openMap() {
+            if (pickup.checked) {
+                mapContainer.style.display = 'flex';
+                hdAddressDiv.style.display = 'none';
+            } else {
+                mapContainer.style.display = 'none';
+            }
+        }
+
+        openMap();
+        pickup.addEventListener('change', openMap);
+
+        showHdAddress();
+        homeDelivery.addEventListener('change', showHdAddress);
+
+
+        function showfield() {
+            var el = document.querySelector(".hiddenfield");
+            if (el) {
+                el.classList.remove('hiddenfield')
+            }
+        }
+
+
+        $('.show1').show();
+        $('.show2, .show3').hide();
+
+
+
+        $('#frequency').change(function () {
+            var selected = $('#frequency option:selected').text();
+            $('.show2').toggle(selected != "Select an option");
+        });
+
+        $('#size').change(function () {
+            var selected = $('#size option:selected').text();
+            $('.show3').toggle(selected != "Choose a size");
+
+        });
+
+
+
+
+        // var shippingBillingAddrSpan = document.getElementById("shippingBillingAddrSpan");
+        // var fullname = document.getElementById("fullname");
+        // var address = document.getElementById("address");
+        // var city = document.getElementById("city");
+        // var state = document.getElementById("state");
+        // var zip = document.getElementById("zip");
+        // var country = document.getElementById("country");
+
+        // // function updateBillingAddr() {
+        // //     shippingBillingAddrSpan.innerHTML = address.value + '<br>' + city.value + (city.value && state.value ? ', ' : '') +
+        // //         state.value + ' ' + zip.value + '<br>' + country.value;
+        // // }
+        // updateBillingAddr();
+        // address.addEventListener('input', updateBillingAddr);
+        // city.addEventListener('input', updateBillingAddr);
+        // state.addEventListener('input', updateBillingAddr);
+        // zip.addEventListener('input', updateBillingAddr);
+        // country.addEventListener('input', updateBillingAddr);
+
+        // var productName = document.getElementById("productName");
+        // var total = document.getElementById("total");
+        // var product = document.getElementById("product");
+        // var productId = window.location.search;
+        // if (productId == '?MONTHLY') {
+        //     productName.innerHTML = 'NW-S AI';
+        //     total.innerHTML = '$1,359 monthly';
+        // } else if (productId == '?NWSSIGHT') {
+        //     productName.innerHTML = 'NW-S with Sight';
+        //     total.innerHTML = '$7,999';
+        // } else if (productId == '?NWS') {
+        //     productName.innerHTML = 'NW-S';
+        //     total.innerHTML = '$5,699';
+        // }
+        // product.value = productName.innerHTML;
+
+
+
+
+
+
+
+        var headerDiv = document.getElementById("headerDiv");
+        function resize() {
+            if (window.innerWidth < 900) { headerDiv.style.justifyContent = 'center'; } else {
+                headerDiv.style.justifyContent = 'flex-start';
+            }
+        } resize(); window.onresize = resize; </script>
+</body>
+
+</html>
